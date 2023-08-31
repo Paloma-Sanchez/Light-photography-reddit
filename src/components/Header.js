@@ -1,7 +1,9 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 export const Header = () => {
+const navigate = useNavigate();
+
 
 return(
     <header>
@@ -11,6 +13,7 @@ return(
             <NavLink to='/wildlifephotography'> Wildlife Photography </NavLink>
             <NavLink to='/LandscapePhotography'>Landscape Photography</NavLink>
         </nav>
+        
         <Outlet/>
      </header>
 )

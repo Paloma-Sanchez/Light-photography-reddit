@@ -6,10 +6,10 @@ export const loadAllArticles = createAsyncThunk(
     'postList/loadAllArticles',
 
     async (category) => {
-        const response = await fetch(`https://www.reddit.com/r/${category}.json`)
+        const response = await fetch(`https://www.reddit.com/r/${category}/top.json`)
 
         const json = await response.json();
-        console.log(json)
+       
         return json;
     }
 );
@@ -49,6 +49,10 @@ export const selectAllPosts = (state) => {
     //console.log(state.postList.posts.data)
     return state.postList.posts.data;
 };
+
+export const filterPosts = (query, posts) => 
+posts.filter(
+  post => post.data.title.toLowerCase().includes(query.toLowerCase()))
 
 export const selectAllPostsAreLoading = (state) => {
     return state.postList.allPostsAreLoading;

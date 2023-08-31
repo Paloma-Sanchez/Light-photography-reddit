@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllArticles, selectAllPosts, selectAllPostsAreLoading } from "./postListSlice";
-import { useParams } from "react-router-dom";
+import { filterPosts, loadAllArticles, selectAllPosts, selectAllPostsAreLoading } from "./postListSlice";
+import { useParams, useSearchParams } from "react-router-dom";
+import { Post } from "../../components/Post";
+import { SearchBar } from "../../components/SearchBar";
 
 export const PostList = () =>{
     const {category} = useParams();
     const dispatch = useDispatch();
     const allPosts = useSelector(selectAllPosts);
     const loadingPosts = useSelector(selectAllPostsAreLoading);
+    const [searchParams, setSearchParams] = useSearchParams();
+    console.log(allPosts.children)
 
     useEffect (() => {
         dispatch(loadAllArticles(category));
@@ -19,28 +23,23 @@ export const PostList = () =>{
         return <h1>Loading...</h1>
     }
 
-   const posts = allPosts.children.map((post, index) => {   
-        if(index===0 || index===1){
-            return
-        }
+    const title = searchParams.get("title");
+    const filteredPosts =  title ? filterPosts(title, allPosts.children) : allPosts.children
+
+   const posts = filteredPosts.map((post, index) => {   
+    
 
         return (
-            <> <div key={index}>
-                    <p>{post.data.ups}</p>
-                </div>
-                <div>
-                    <div className="img-container">
-                        <img src = {post.data.url} className="img"/>
-                    </div>
-                    <h2>{post.data.title} </h2>
-                    <p>Posted by {post.data.author}</p>
-                    <p>{} hours ago</p>
-                    <i class="icon icon-comment _3DVrpDrMM9NLT6TlsTUMxC" role="presentation"></i>
+            <> 
+          
 
-                </div>
+                <Post key={index} post={post}/>
             </>
         )
     })
+
+
+
 
     
 // 
@@ -49,6 +48,13 @@ export const PostList = () =>{
 
     return (
         <>
+          <form className="search-form">
+                <input type="text" className="search" placeholder="Search for a post"  onChange={(e)=>setSearchParams({title:e.target.value})}/>
+                <button type="submit" className="search-button">
+                    🔎
+                </button>
+            </form>
+    
             {posts}
         </>
 
