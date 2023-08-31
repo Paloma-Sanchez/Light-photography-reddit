@@ -5,11 +5,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const loadAllArticles = createAsyncThunk(
     'postList/loadAllArticles',
 
-    async () => {
-        const response = await fetch("https://www.reddit.com/r/wildlifephotography.json");
+    async (category) => {
+        const response = await fetch(`https://www.reddit.com/r/${category}.json`)
+
         const json = await response.json();
-        //const body = json.data.children;
-        //console.log(body);
+        console.log(json)
         return json;
     }
 );
@@ -46,6 +46,7 @@ const postListSlice = createSlice ({
 
 
 export const selectAllPosts = (state) => {
+    //console.log(state.postList.posts.data)
     return state.postList.posts.data;
 };
 

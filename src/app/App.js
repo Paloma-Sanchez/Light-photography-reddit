@@ -7,7 +7,8 @@ import { PostList } from '../features/PostsList/PostList';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element = {< Header/>}>
-    <Route path='/' element = {<PostList/>}/>
+    <Route path='/:category' element = {<PostList/>}/>
+    
 
   </Route>
 ))
