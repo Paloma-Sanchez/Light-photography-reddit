@@ -12,13 +12,15 @@ export const Post = ({key, post, category}) => {
     const postedHrsAgo= Math.floor(((now_utc/1000 -created_utc)/60)/60)
 
     const postId=post.data.name.slice(3)
-    console.log(postId)
+    //console.log(postId)
 
 
     return(
         <div className="post">
             <div key={key} className="ups" >
+            <i class="fa-solid fa-arrow-up-long"></i>
                 <p>{post.data.ups}</p>
+            <i class="fa-solid fa-arrow-down-long"></i>
             </div>
             <Link to={`/${category}/${postId}`} className="post-right">
                 <div className="img-container">

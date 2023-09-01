@@ -10,8 +10,6 @@ const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element = {< Header/>}>
     <Route path='/:category' element = {<PostList/>}/>
     <Route path='/:category/:postId' element = {<FullPost/>}/>
-    
-
   </Route>
 ))
 
