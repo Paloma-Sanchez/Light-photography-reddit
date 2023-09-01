@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterPosts, loadAllArticles, selectAllPosts, selectAllPostsAreLoading } from "./postListSlice";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Post } from "../../components/Post";
-import { SearchBar } from "../../components/SearchBar";
+//import { SearchBar } from "../../components/SearchBar";
 
 export const PostList = () =>{
     const {category} = useParams();
@@ -11,7 +11,7 @@ export const PostList = () =>{
     const allPosts = useSelector(selectAllPosts);
     const loadingPosts = useSelector(selectAllPostsAreLoading);
     const [searchParams, setSearchParams] = useSearchParams();
-    //console.log(allPosts.children)
+    console.log(category)
 
     useEffect (() => {
         dispatch(loadAllArticles(category));
@@ -33,7 +33,7 @@ export const PostList = () =>{
             <> 
           
 
-                <Post key={index} post={post}/>
+                <Post key={index} post={post} category={category}/>
             </>
         )
     })

@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const Post = ({key, post}) => {
+export const Post = ({key, post, category}) => {
     const date = new Date();
     const now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
                 date.getUTCDate(), date.getUTCHours(),
@@ -10,12 +11,16 @@ export const Post = ({key, post}) => {
 
     const postedHrsAgo= Math.floor(((now_utc/1000 -created_utc)/60)/60)
 
+    const postId=post.data.name.slice(3)
+    console.log(postId)
+
+
     return(
         <div className="post">
             <div key={key} className="ups" >
                 <p>{post.data.ups}</p>
             </div>
-            <div className="post-right">
+            <Link to={`/${category}/${postId}`} className="post-right">
                 <div className="img-container">
                     <img src = {post.data.url} className="img"/>
                 </div>
@@ -30,7 +35,7 @@ export const Post = ({key, post}) => {
                         <p className="comment-number">{post.data.num_comments}</p>
                     </div>
                </div>
-            </div>
+            </Link>
         </div>
     )
 }

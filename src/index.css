@@ -138,3 +138,34 @@ code {
 
   margin: 10px;
 }
+
+
+/******* FullPost *******/
+
+.back-button{
+  margin-left: 50px;
+  font-size: 20px;
+  font-family: 'Raleway';
+  background-color: rgba(87, 160, 248, 0.295);
+  font-weight: bold;
+  color: rgba(0, 0, 122, 0.846);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.fp-img-container{
+  width: 500px;
+  margin: 0 auto;
+
+}
+
+.comment {
+  font-family: 'Raleway', sans-serif;
+  font-style: italic;
+  width: 430px;
+  border: 1px solid rgba(128, 128, 128, 0.49);
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 0 15px;
+  background-color: rgba(128, 128, 128, 0.056);
+}
