@@ -11,7 +11,7 @@ export const PostList = () =>{
     const allPosts = useSelector(selectAllPosts);
     const loadingPosts = useSelector(selectAllPostsAreLoading);
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(allPosts.children)
+    //console.log(allPosts.children)
 
     useEffect (() => {
         dispatch(loadAllArticles(category));
@@ -48,14 +48,15 @@ export const PostList = () =>{
 
     return (
         <>
-          <form className="search-form">
+          <form className="search-bar">
                 <input type="text" className="search" placeholder="Search for a post"  onChange={(e)=>setSearchParams({title:e.target.value})}/>
                 <button type="submit" className="search-button">
                     🔎
                 </button>
             </form>
-    
-            {posts}
+            <div className="grid">
+                {posts}
+            </div>
         </>
 
     )

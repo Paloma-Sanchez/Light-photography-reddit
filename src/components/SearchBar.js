@@ -18,7 +18,7 @@ export const SearchBar = ({category}) =>{
   };
 
     return (
-        <form onSubmit={onSearchHandler} className="search-form">
+        <form onSubmit={onSearchHandler} className="search-bar">
             <input type="text" className="search" placeholder="Search for a post"  ref={searchInputRef}/>
             <button type="submit" className="search-button">
                 🔎

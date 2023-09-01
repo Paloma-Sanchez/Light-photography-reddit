@@ -1,22 +1,36 @@
 import React from "react";
 
 export const Post = ({key, post}) => {
+    const date = new Date();
+    const now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
+                date.getUTCDate(), date.getUTCHours(),
+                date.getUTCMinutes(), date.getUTCSeconds());
+    
+    const created_utc= post.data.created;
+
+    const postedHrsAgo= Math.floor(((now_utc/1000 -created_utc)/60)/60)
 
     return(
-        <div>
-        <div key={key} >
-            <p>{post.data.ups}</p>
-        </div>
-        <div>
-            <div className="img-container">
-                <img src = {post.data.url} className="img"/>
+        <div className="post">
+            <div key={key} className="ups" >
+                <p>{post.data.ups}</p>
             </div>
-            <h2>{post.data.title} </h2>
-            <p>Posted by {post.data.author}</p>
-            <p>{} hours ago</p>
-            <i class="icon icon-comment _3DVrpDrMM9NLT6TlsTUMxC" role="presentation"></i>
-
-        </div>
+            <div className="post-right">
+                <div className="img-container">
+                    <img src = {post.data.url} className="img"/>
+                </div>
+                <h2 className="post-title">{post.data.title} </h2>
+                <div className="post-footer">
+                    <div className="post-author">
+                        <p >Posted by {post.data.author}  -  </p>
+                        <p>{postedHrsAgo<24?postedHrsAgo:postedHrsAgo/24} hours ago</p>
+                    </div>
+                    <div className="post-comments">
+                        <i class="fa-solid fa-comment"></i>
+                        <p className="comment-number">{post.data.num_comments}</p>
+                    </div>
+               </div>
+            </div>
         </div>
     )
 }
